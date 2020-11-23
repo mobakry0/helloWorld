@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<title>Mohamed Bakry Web</title>
+<style>
+   h1{
+	text-align: center;
+	background: #ece6e6;
+   }
+   h2{
+
+   }
+   /*first type of CSS class -> with tag type */
+   h3{
+
+   }
+   /*second type of CSS class -> with classname*/
+   .class1{
+   
+   }
+   /*third type of CSS class -> with element ID*/
+   #mainContainer{
+	text-align: center;
+   }
+   #lblSearchMirror{
+	font-style:italic;
+	color: green;
+	font-weight:bold;
+   }
+ </style>
+</head>
+<body>
+<h1>Sha2laba Homepage</h1>
+
+<div id="mainContainer">
+	<label for="txtSearch">Search products:</label>
+	<input onchange="updateMirrorLabel()" type="text" id="txtSearch">
+	<br>
+	<div>You searched for: 
+		<label id= "lblSearchMirror">boots</label>
+	</div>
+	<input type="button" value="I'm bored" onclick="getBoredomSuggestionFromAPI()">Empty</input>
+	<div id="divBored"></div>
+	<h2> This is our first Product selling Web which is well established and impressively reliable. 
+	<br> Kindly check our listed Products and always feel free to contact us regarding any issue. </h2>
+	
+	<h3><a href="https:/www.facebook.com" target="_blank">Visit our Facebook</a>
+	<br> <a href="https:/www.Instagram.com" target="_blank">Visit our Instagram</a></h3>
+	
+	<h2 style="color:red;font-size: 30px;">Men Clothing</h2>
+	<p>  <img src="https://res.cloudinary.com/collabary/image/upload/x_0.0,y_0.0,w_1.0,h_1.0,c_crop/f_auto,q_auto:eco/play/production/35lWhCSDTjKmvv0tFoBIAy/hfk3rex7y7qdz4g4q4s3" width="300" height="450"> </p>
+	<br><br><br><br>
+	<h2 style="color:red;font-size: 30px;">Women Clothing</h2>
+	<p> <img src="https://mosaic03.ztat.net/vgs/media/outfit-image-mhq/017ca0d838f14ed19549fdcf37782ead/c23bd41a2e444d17991d4ebdda95f5b1.jpg?imwidth=768" width="300" height="450"> </p2>
+	<br><br><br><br>
+	<h2 style="color:red;font-size: 30px;">Shoes</h2>
+	<p> <img src="https://images.pexels.com/photos/1102777/pexels-photo-1102777.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" width="300" height="450"> </p2>
+	<h2 style="color:red"></h2>
+	
+	
+</div>
+<script>
+	function getBoredomSuggestionFromAPI(){
+		//Asynchronous Http request
+		var divBored = document.getElementById("divBored");
+		$.get('https://www.boredapi.com/api/activity').then(result => {
+			divBored.innerHTML = result.activity;
+		});
+		divBored.style.backgroundColor = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
+	}
+	function updateMirrorLabel(){
+		var txtInput = document.getElementById("txtSearch")
+		var searchText = txtInput.value;
+		//alert("enta katabt: " + searchText)
+		var mirrorLabel = document.getElementById("lblSearchMirror");
+		mirrorLabel.innerHTML = searchText;
+		//mirrorLabel.style.color = "blue"; 
+		var numberOfCharacters = searchText.length;
+		if(numberOfCharacters <= 5){
+			mirrorLabel.style.color = "red";
+		}
+		else if(numberOfCharacters > 5 && numberOfCharacters <= 10)
+		{
+			mirrorLabel.style.color = "yellow";
+		}
+		else{
+			mirrorLabel.style.color = "green";
+		}
+		
+		
+	}
+</script>
+</body>
+</html>
